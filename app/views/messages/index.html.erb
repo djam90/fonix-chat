@@ -1,0 +1,24 @@
+<% content_for :title, "#general | Fonix Chat" %>
+
+<section class="chat" data-controller="chat" data-chat-current-user-id-value="<%= current_user.id %>">
+  <header class="chat__header">
+    <h1># general</h1>
+    <span class="chat__status" data-chat-target="status">Connecting...</span>
+  </header>
+
+  <div class="chat__messages" data-chat-target="messages" aria-live="polite">
+    <% if @messages.empty? %>
+      <p class="chat__empty" data-chat-target="empty">No messages yet. Say hello!</p>
+    <% end %>
+    <%= render partial: "messages/message", collection: @messages, locals: { viewer_id: current_user.id } %>
+  </div>
+
+  <p class="chat__error" data-chat-target="error" role="alert" hidden></p>
+
+  <form class="chat__composer" data-action="submit->chat#submit">
+    <label for="message_body" class="visually-hidden">Message</label>
+    <textarea id="message_body" rows="1" maxlength="<%= Message::MAX_LENGTH %>" placeholder="Message #general"
+      autofocus data-chat-target="input" data-action="keydown.enter->chat#submitOnEnter"></textarea>
+    <button type="submit" class="button" data-chat-target="submit" disabled>Send</button>
+  </form>
+</section>
