@@ -1,0 +1,10 @@
+<p>Here's what happened in Fonix Chat this week.</p>
+
+<p>
+  <strong><%= messages_count(@digest.exchanged_last_week) %> <%= @digest.exchanged_last_week == 1 ? "has" : "have" %> been exchanged in the last week.</strong><br>
+  You sent <%= number_with_delimiter(@digest.sent_last_week) %> and received <%= number_with_delimiter(@digest.received_last_week) %>.
+</p>
+
+<p><strong><%= since_last_message_line(@digest) %></strong></p>
+
+<p><%= link_to "Jump back into the chat", root_url %></p>

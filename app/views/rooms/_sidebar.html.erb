@@ -1,0 +1,13 @@
+<nav class="rooms" aria-label="Rooms">
+  <h2 class="rooms__title">Rooms</h2>
+
+  <ul class="rooms__list">
+    <% rooms.each do |room| %>
+      <li>
+        <%= link_to "# #{room.name}", room_path(room),
+              class: [ "rooms__link", { "rooms__link--current": room == current } ],
+              aria: { current: (room == current ? "page" : nil) } %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

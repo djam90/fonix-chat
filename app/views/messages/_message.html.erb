@@ -1,0 +1,9 @@
+<%= tag.article id: dom_id(message),
+      class: [ "message", { "message--own": message.user_id == local_assigns[:viewer_id] } ],
+      data: { author_id: message.user_id } do %>
+  <header class="message__meta">
+    <span class="message__author"><%= message.user.email %></span>
+    <%= time_tag message.created_at, message.created_at.to_fs(:short), class: "message__time" %>
+  </header>
+  <p class="message__body"><%= message.body %></p>
+<% end %>

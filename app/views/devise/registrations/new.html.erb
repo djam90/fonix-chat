@@ -1,0 +1,22 @@
+<% content_for :title, "Create an account | Fonix Chat" %>
+
+<section class="card">
+  <h1>Create an account</h1>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form" }) do |f| %>
+    <%= render "shared/form_errors", record: resource %>
+
+    <%= f.label :email, "Email address" %>
+    <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true, autocomplete: "new-password", minlength: @minimum_password_length %>
+
+    <%= f.label :password_confirmation, "Confirm password" %>
+    <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", minlength: @minimum_password_length %>
+
+    <%= f.submit "Create account", class: "button" %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</section>
